@@ -9,7 +9,24 @@ body{
     float: right;
     margin-bottom: 15px;
 }
+.li{
+    list-style: none;
+}
 .btn-index{
     margin-top: 10px;
     padding: 3px 6px;
+}
+.avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: 5px;
+}
+
+.media-bottom{
+    padding-bottom: 5px;
+}
+.text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
 }

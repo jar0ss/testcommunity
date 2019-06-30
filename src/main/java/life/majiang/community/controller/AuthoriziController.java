@@ -54,7 +54,8 @@ public class AuthoriziController {
             user.setGmt_creat(System.currentTimeMillis());
             user.setName(githubUser.getName());
             user.setGmt_modified(user.getGmt_creat());
-            user.setDiscreption(githubUser.getBio());
+            user.setDescription(githubUser.getBio());
+            user.setAvatar_url(githubUser.getAvatar_url());
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
 //            写cookies和session返回登录成功状态

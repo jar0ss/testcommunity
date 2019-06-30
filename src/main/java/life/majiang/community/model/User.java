@@ -7,15 +7,8 @@ public class User {
     private String token;
     private Long gmt_creat;
     private Long gmt_modified;
-    private String discreption;
-
-    public String getDiscreption() {
-        return discreption;
-    }
-
-    public void setDiscreption(String discreption) {
-        this.discreption = discreption;
-    }
+    private String description;
+    private String avatar_url;
 
     public int getId() {
         return id;
@@ -49,19 +42,35 @@ public class User {
         this.token = token;
     }
 
-    public long getGmt_creat() {
+    public Long getGmt_creat() {
         return gmt_creat;
     }
 
-    public void setGmt_creat(long gmt_creat) {
+    public void setGmt_creat(Long gmt_creat) {
         this.gmt_creat = gmt_creat;
     }
 
-    public long getGmt_modified() {
+    public Long getGmt_modified() {
         return gmt_modified;
     }
 
-    public void setGmt_modified(long gmt_modified) {
+    public void setGmt_modified(Long gmt_modified) {
         this.gmt_modified = gmt_modified;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
+    public void setAvatar_url(String avator_url) {
+        this.avatar_url = avator_url;
     }
 }

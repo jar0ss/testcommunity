@@ -25,8 +25,8 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <span class="btn btn-default btn-index" type="button" href="http://localhost:8887/publish">发布
-                </span>
+                <a class="btn btn-default btn-index" type="button" href="/publish">发布
+                </a>
                     <li class="dropdown" th:if="${session.user != null}">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
@@ -42,6 +42,32 @@
         </div>
     </div>
 </nav>
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 ">
+                <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+                <hr>
+                <li th:each="question, questions : ${questions}">
+                <div class="media media-bottom">
+                    <div class="media-left">
+                        <a th:href="@{${question.user.avatar_url}}">
+                            <img class="media-object avatar" th:src="@{${question.user.avatar_url}}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" th:text="${question.title}"></h4>
+                        <span th:text="${question.description}"></span>
+                        <br/>
+                        <span class="text-desc">2个回复·31次浏览·1小时前</span>
+                    </div>
+                </div>
+                </li>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <h3>热门话题</h3>
+            </div>
+        </div>
+    </div>
 <script src="js/jquery.min.js" type="application/javascript"></script>
 <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </body>
