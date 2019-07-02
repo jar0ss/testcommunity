@@ -33,10 +33,10 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人中心</a></li>
-                        <li><a href="#">退出登录</a></li>
+                        <li><a href="/quituser">退出登录</a></li>
                     </ul>
                     </li>
-                    <li th:if="${session.user==null}"><a href="https://github.com/login/oauth/authorize?client_id=81a871e050d89b82087f&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a></li>
+                    <li th:if="${session.user==null}"><a href="/account">登录</a></li>
 
             </ul>
         </div>
@@ -45,13 +45,13 @@
     <div class="container-fluid main">
         <div class="row">
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 ">
-                <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+                <h2><span class="glyphicon glyphicon-list faxian" aria-hidden="true"></span>发现</h2>
                 <hr>
-                <li th:each="question, questions : ${questions}">
+                <li class="li-circle" th:each="question, questions : ${questions}">
                 <div class="media media-bottom">
                     <div class="media-left">
-                        <a th:href="@{${question.user.avatar_url}}">
-                            <img class="media-object avatar" th:src="@{${question.user.avatar_url}}">
+                        <a >
+                            <img class="media-object avatar" src="ico/favicon.png">
                         </a>
                     </div>
                     <div class="media-body">
@@ -70,5 +70,6 @@
     </div>
 <script src="js/jquery.min.js" type="application/javascript"></script>
 <script src="js/bootstrap.min.js" type="application/javascript"></script>
+<script src="js/community.js" type="application/javascript"></script>
 </body>
 </html>

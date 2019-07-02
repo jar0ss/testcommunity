@@ -1,7 +1,7 @@
 package life.majiang.community.dto;
 
 public class GithubUser {
-    private String id;
+    private Long id;
     private String name;
     private String bio;
     private String avatar_url;
@@ -14,12 +14,12 @@ public class GithubUser {
         this.avatar_url = avator_url;
     }
 
-    public String getId() {
+    public Long getAccount_id() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAccount_id(Long account_id) {
+        this.id = account_id;
     }
 
     public String getName() {

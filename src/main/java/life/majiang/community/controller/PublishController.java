@@ -36,14 +36,16 @@ public class PublishController {
                             Model model
                             ){
         User user=null ;
+        Integer creator=null;
 //        System.out.println("-------------------");
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie:cookies) {
             if (cookie.getName().equals("token")){
                 String token = cookie.getValue();
-                user = userMapper.findToken(token);
+                user=userMapper.findByToken(token);
                 if (user != null){
                     request.getSession().setAttribute("user",user);
+                    creator=user.getId();
                 }
                 break;
             }
@@ -56,7 +58,7 @@ public class PublishController {
         question.setTags(tags);
         question.setTitle(title);
         question.setDescription(description);
-        question.setCreator(user.getId());
+        question.setCreator(creator);
         question.setGmt_creat(System.currentTimeMillis());
         question.setGmt_modified(question.getGmt_creat());
 //        System.out.println("-------------------");

@@ -1,5 +1,7 @@
 package life.majiang.community.model;
 
+import org.apache.ibatis.annotations.Insert;
+
 public class Question {
     private int id;
     private String title;

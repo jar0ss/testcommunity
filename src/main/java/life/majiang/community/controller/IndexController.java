@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -31,7 +32,7 @@ public class IndexController {
             for (Cookie cookie:cookies) {
                 if (cookie.getName().equals("token")){
                     String token = cookie.getValue();
-                    User user = userMapper.findToken(token);
+                    User user = userMapper.findByToken(token);
                     if (user != null){
                         request.getSession().setAttribute("user",user);
                     }
@@ -42,8 +43,20 @@ public class IndexController {
 
         List<QuestionDTO> questionList = questionService.list();
         model.addAttribute("questions",questionList);
-        for (int i = 0; i < questionList.size() ; i++) {
-            questionList.get(i).toString();
-        }
-        return "index";}
+        return "index";
+    }
+
+    @GetMapping("/quituser")
+    public String quituser(HttpServletResponse response,HttpServletRequest request){
+
+        Cookie cookie = new Cookie("JSESSIONID",null);//cookie名字要相同
+        Cookie cookie2 = new Cookie("token",null);//cookie名字要相同
+        cookie.setMaxAge(0); //
+        cookie.setPath(request.getContextPath());
+        response.addCookie(cookie);
+        response.addCookie(cookie2);
+
+        return "redirect:/";}
+
+
 }

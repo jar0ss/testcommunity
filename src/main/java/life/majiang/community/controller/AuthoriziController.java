@@ -46,21 +46,35 @@ public class AuthoriziController {
 //        System.out.println(accessToken);
         GithubUser githubUser = githubProvider.getuser(accessToken);
 //        System.out.println(user);
-        if (githubUser!=null && githubUser.getId()!=null){
+
+         if ( githubUser !=null && githubUser.getAccount_id()!=null){
+             String token = UUID.randomUUID().toString();
             User user = new User();
-            user.setAccount_id(githubUser.getId());
-            String token = UUID.randomUUID().toString();
+            user.setAccount_id(githubUser.getAccount_id().toString());
             user.setToken(token);
             user.setGmt_creat(System.currentTimeMillis());
             user.setName(githubUser.getName());
             user.setGmt_modified(user.getGmt_creat());
             user.setDescription(githubUser.getBio());
             user.setAvatar_url(githubUser.getAvatar_url());
-            userMapper.insert(user);
-            response.addCookie(new Cookie("token",token));
+            user.setAccount(githubUser.getName());
+            System.out.println(githubUser.getAccount_id());
+            User gituser = userMapper.findByAccount_id(githubUser.getAccount_id().toString());
+            if (gituser==null)
+            {
+                System.out.println(githubUser.getAccount_id());
+                userMapper.insert(user);
+                response.addCookie(new Cookie("token",token));
+                return "redirect:/";
+            }else {
+                System.out.println("......."+gituser.getName());
+                response.addCookie(new Cookie("token",gituser.getToken()));
 //            写cookies和session返回登录成功状态
-            return "redirect:/";
+                return "redirect:/";
+            }
         }else{
+             System.out.println("----------------"+githubUser.getName()+
+                     (githubUser !=null && githubUser.getAccount_id()!=null));
 //            返回登录失败
             return "redirect:/";
 
